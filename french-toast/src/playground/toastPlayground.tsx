@@ -1,11 +1,12 @@
+import styles from "./playground.module.css"
+
 export function Playground(){
     
-const VARIANT_OPTIONS = ['notice', 'warning', 'success', 'error'];
+// const VARIANT_OPTIONS = ['notice', 'warning', 'success', 'error'];
 
   return (
     <div className={styles.wrapper}>
       <header>
-        <img alt="Cute toast mascot" src="/toast.png" />
         <h1>Toast Playground</h1>
       </header>
 
@@ -38,7 +39,6 @@ const VARIANT_OPTIONS = ['notice', 'warning', 'success', 'error'];
               notice
             </label>
 
-            {/* TODO Other Variant radio buttons here */}
           </div>
         </div>
 
