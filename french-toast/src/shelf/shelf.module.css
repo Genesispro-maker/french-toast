@@ -4,11 +4,6 @@
   }
 }
 
-@keyframes dismiss{
-  to{
-    transform: translateX(0);
-  }
-}
 
 .wrapper {
   position: fixed;
