@@ -1,8 +1,9 @@
 import { useCallback, useContext, useEffect, useState, type ChangeEvent } from "react";
 import styles from "./playground.module.css"
-// import { Toast } from "../toast";
+
 import { ToastShelf } from "../shelf";
 import { ToastContext } from "./toast-provider";
+import { useEscapeKey } from "../hooks/useEscape";
 
 
 const VARIANT_OPTIONS = ['notice', 'warning', 'success', 'error'];
@@ -12,11 +13,7 @@ export function Playground(){
      const {setToasts} = useContext(ToastContext)
     const [message, setMessage] = useState<string>('')
     const [variant, setVariant] = useState<string>(VARIANT_OPTIONS[0])
-    // const [isRendered, setRendered] = useState(false)
-     
-    // const Dismiss = useCallback(() => {
-    //   setRendered((currentState) => !currentState)
-    // }, [])
+   
 
     function handleCreateToast(e: ChangeEvent){
       e.preventDefault()
@@ -41,21 +38,13 @@ export function Playground(){
         window.removeEventListener("keydown", EnterKey)
       }
     }, [message, variant, createToast])
+    
 
+   const handleEsc = useCallback(() => {
+     setToasts([])
+   }, [])
 
-    useEffect(() => {
-      function HandleEsc(e: KeyboardEvent){
-          if(e.key === "Escape"){
-            setToasts([])
-          }
-      }
-
-      window.addEventListener("keydown", HandleEsc)
-
-      return () => {
-        window.removeEventListener("keydown", HandleEsc)
-      }
-    }, [setToasts])
+    useEscapeKey("Escape", handleEsc)
 
   return (
     <div className={styles.wrapper}>
