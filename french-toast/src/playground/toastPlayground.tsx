@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styles from "./playground.module.css"
+import { Toast } from "../toast";
 
 
 const VARIANT_OPTIONS = ['notice', 'warning', 'success', 'error'];
@@ -14,7 +15,7 @@ export function Playground(){
       <header>
         <h1>Toast Playground</h1>
       </header>
-
+      <Toast />
       <div className={styles.controlsWrapper}>
         <div className={styles.row}>
           <label
@@ -36,12 +37,14 @@ export function Playground(){
           <div className={`${styles.inputWrapper} ${styles.radioWrapper}`}>
             {VARIANT_OPTIONS.map((options) => {
               const id = `variant-${options}`
-              return <label htmlFor={id}>
+              return <label key={id} htmlFor={id}>
               <input
                 id={id}
                 type="radio"
                 name="variant"
                 value={options}
+                checked={options === variant}
+                onChange={(e) => setVariant(e.target.value)}
               />
                {options}
               </label>
@@ -54,7 +57,7 @@ export function Playground(){
           <div
             className={`${styles.inputWrapper} ${styles.radioWrapper}`}
           >
-            <button>Pop toast</button>
+            <button onClick={() => window.alert(`${variant} - ${message }`)}>Pop toast</button>
           </div>
         </div>
       </div>
