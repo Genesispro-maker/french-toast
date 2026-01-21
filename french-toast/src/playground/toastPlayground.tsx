@@ -1,29 +1,17 @@
-import { useCallback, useState, type ChangeEvent } from "react";
+import { useCallback, useContext, useEffect, useState, type ChangeEvent } from "react";
 import styles from "./playground.module.css"
 // import { Toast } from "../toast";
 import { ToastShelf } from "../shelf";
+import { ToastContext } from "./toast-provider";
 
 
 const VARIANT_OPTIONS = ['notice', 'warning', 'success', 'error'];
 
 export function Playground(){
+     const {createToast} = useContext(ToastContext)
     const [message, setMessage] = useState<string>('')
     const [variant, setVariant] = useState<string>(VARIANT_OPTIONS[0])
     // const [isRendered, setRendered] = useState(false)
-    const [toasts, setToasts] = useState([
-      {
-        message: "hello",
-        id: crypto.randomUUID(),
-        variant: "notice"
-      },
-
-      {
-        message: "boring",
-        id: crypto.randomUUID(),
-        variant: "warning"
-      }
-    ])
-
      
     // const Dismiss = useCallback(() => {
     //   setRendered((currentState) => !currentState)
@@ -31,31 +19,34 @@ export function Playground(){
 
     function handleCreateToast(e: ChangeEvent){
       e.preventDefault()
-      const nextToasts = [...toasts, {
-        id: crypto.randomUUID(),
-        message,
-        variant,
-      }]
-
-      setToasts(nextToasts)
-      setVariant(VARIANT_OPTIONS[0])
-      setMessage('')
+       createToast(message, variant)
+       setMessage('')
+       setVariant("notice")
     }
 
-    function HandleDismiss(id: string){
-      const dismissToast = toasts.filter(toaster => {
-        return toaster.id !== id
-      })
-      setToasts(dismissToast)
-    }
 
+    useEffect(() => {
+      function EnterKey(e: KeyboardEvent){
+         if(e.key === "Enter"){
+            createToast(message, variant)
+            setMessage('')
+            setVariant("notice")
+         }
+      }
+
+      window.addEventListener("keydown", EnterKey)
+
+      return () => {
+        window.removeEventListener("keydown", EnterKey)
+      }
+    }, [message, variant, createToast])
 
   return (
     <div className={styles.wrapper}>
       <header>
         <h1>Toast Playground</h1>
       </header>
-        <ToastShelf toasts={toasts} handleDismiss={HandleDismiss}/>
+        <ToastShelf  />
       <div className={styles.controlsWrapper}>
         <div className={styles.row}>
           <label
