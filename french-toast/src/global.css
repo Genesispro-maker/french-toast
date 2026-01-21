@@ -10,7 +10,7 @@ html {
 
   --color-notice: hsl(235deg 100% 50%);
   --color-notice-bg: hsl(235deg 0% 100%);
-  --color-warning: hsl(35deg 100% 46%);
+  --color-warning: hsl(44, 100%, 46%);
   --color-warning-bg: hsl(40deg 100% 94%);
   --color-success: hsl(120deg 80% 35%);
   --color-success-bg: hsl(120deg 90% 96%);
@@ -45,12 +45,5 @@ html {
 
 body {
   background-attachment: fixed;
-  background-image: conic-gradient(
-    from 270deg at 50% -20%,
-    hsl(240deg 40% 5%) 50%,
-    hsl(250deg 40% 20%),
-    hsl(250deg 30% 25%),
-    hsl(250deg 40% 20%),
-    hsl(240deg 40% 5%)
-  );
+  background-color: hsl(360, 100%, 100%);
 }
