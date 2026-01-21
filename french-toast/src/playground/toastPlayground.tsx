@@ -9,6 +9,7 @@ const VARIANT_OPTIONS = ['notice', 'warning', 'success', 'error'];
 
 export function Playground(){
      const {createToast} = useContext(ToastContext)
+     const {setToasts} = useContext(ToastContext)
     const [message, setMessage] = useState<string>('')
     const [variant, setVariant] = useState<string>(VARIANT_OPTIONS[0])
     // const [isRendered, setRendered] = useState(false)
@@ -40,6 +41,21 @@ export function Playground(){
         window.removeEventListener("keydown", EnterKey)
       }
     }, [message, variant, createToast])
+
+
+    useEffect(() => {
+      function HandleEsc(e: KeyboardEvent){
+          if(e.key === "Escape"){
+            setToasts([])
+          }
+      }
+
+      window.addEventListener("keydown", HandleEsc)
+
+      return () => {
+        window.removeEventListener("keydown", HandleEsc)
+      }
+    }, [setToasts])
 
   return (
     <div className={styles.wrapper}>
