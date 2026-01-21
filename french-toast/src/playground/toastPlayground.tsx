@@ -15,7 +15,9 @@ export function Playground(){
       <header>
         <h1>Toast Playground</h1>
       </header>
-      <Toast />
+      <Toast variant={variant}>
+        {message}
+      </Toast>
       <div className={styles.controlsWrapper}>
         <div className={styles.row}>
           <label

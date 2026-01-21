@@ -9,14 +9,14 @@ import { AlertOctagon, AlertTriangle, CheckCircle, Info, XIcon} from "lucide-rea
 //   error: AlertOctagon,
 // };
 
-export function Toast() {
+export function Toast({variant, children}: {variant: string, children: string}) {
   return (
-    <div className={`${styles.toast} ${styles.notice}`}>
+    <div className={`${styles.toast} ${styles[variant]}`}>
       <div className={styles.iconContainer}>
         <Info size={24} />
       </div>
       <p className={styles.content}>
-        16 photos have been uploaded
+        {children}
       </p>
       <button className={styles.closeButton}>
         <XIcon size={24} />
