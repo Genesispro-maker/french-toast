@@ -81,6 +81,7 @@ export function Playground(){
                 value={options}
                 checked={options === variant}
                 onChange={(e) => setVariant(e.target.value)}
+                className={styles[options]}
               />
                {options}
               </label>
