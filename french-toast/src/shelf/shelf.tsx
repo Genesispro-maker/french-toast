@@ -1,15 +1,14 @@
 import { Toast } from "../toast";
 import styles from "./shelf.module.css"
 
-export function ToastShelf() {
+export function ToastShelf({toasts, handleDismiss}) {
   return (
     <ol className={styles.wrapper}>
-      <li className={styles.toastWrapper}>
-        <Toast variant="notice">Example notice toast</Toast>
+     {toasts.map((toast) => {
+      return <li key={toast.id} className={styles.toastWrapper}>
+        <Toast id={toast.id} variant={toast.variant} handledismiss={handleDismiss}>{toast.message}</Toast>
       </li>
-      <li className={styles.toastWrapper}>
-        <Toast variant="error">Example error toast</Toast>
-      </li>
+     })}
     </ol>
   );
 }
