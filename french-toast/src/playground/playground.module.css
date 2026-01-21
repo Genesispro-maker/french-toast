@@ -102,3 +102,19 @@
   width: 100%;
   height: 4rem;
 }
+
+.notice{
+  accent-color: var(--color-notice);
+}
+
+.warning{
+  accent-color: var(--color-warning);
+}
+
+.error{
+  accent-color: var(--color-error);
+}
+
+.success{
+  accent-color: var(--color-success);
+}
