@@ -43,7 +43,7 @@ export function Playground(){
                 name="variant"
                 value={options}
               />
-                notice
+               {options}
               </label>
             })}
           </div>
