@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useCallback, useState, type ChangeEvent } from "react";
 import styles from "./playground.module.css"
-import { Toast } from "../toast";
+// import { Toast } from "../toast";
+import { ToastShelf } from "../shelf";
 
 
 const VARIANT_OPTIONS = ['notice', 'warning', 'success', 'error'];
@@ -8,6 +9,45 @@ const VARIANT_OPTIONS = ['notice', 'warning', 'success', 'error'];
 export function Playground(){
     const [message, setMessage] = useState<string>('')
     const [variant, setVariant] = useState<string>(VARIANT_OPTIONS[0])
+    // const [isRendered, setRendered] = useState(false)
+    const [toasts, setToasts] = useState([
+      {
+        message: "hello",
+        id: crypto.randomUUID(),
+        variant: "notice"
+      },
+
+      {
+        message: "boring",
+        id: crypto.randomUUID(),
+        variant: "warning"
+      }
+    ])
+
+     
+    // const Dismiss = useCallback(() => {
+    //   setRendered((currentState) => !currentState)
+    // }, [])
+
+    function handleCreateToast(e: ChangeEvent){
+      e.preventDefault()
+      const nextToasts = [...toasts, {
+        id: crypto.randomUUID(),
+        message,
+        variant,
+      }]
+
+      setToasts(nextToasts)
+      setVariant(VARIANT_OPTIONS[0])
+      setMessage('')
+    }
+
+    function HandleDismiss(id: string){
+      const dismissToast = toasts.filter(toaster => {
+        return toaster.id !== id
+      })
+      setToasts(dismissToast)
+    }
 
 
   return (
@@ -15,9 +55,7 @@ export function Playground(){
       <header>
         <h1>Toast Playground</h1>
       </header>
-      <Toast variant={variant}>
-        {message}
-      </Toast>
+        <ToastShelf toasts={toasts} handleDismiss={HandleDismiss}/>
       <div className={styles.controlsWrapper}>
         <div className={styles.row}>
           <label
@@ -59,7 +97,7 @@ export function Playground(){
           <div
             className={`${styles.inputWrapper} ${styles.radioWrapper}`}
           >
-            <button onClick={() => window.alert(`${variant} - ${message }`)}>Pop toast</button>
+            <button onClick={handleCreateToast}>Pop toast</button>
           </div>
         </div>
       </div>
