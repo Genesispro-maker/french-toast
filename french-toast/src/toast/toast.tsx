@@ -1,5 +1,13 @@
 import styles from "./toast.module.css"
-import { Info, XIcon} from "lucide-react";
+import { AlertOctagon, AlertTriangle, CheckCircle, Info, XIcon} from "lucide-react";
+
+
+const ICONS_BY_VARIANT = {
+  notice: Info,
+  warning: AlertTriangle,
+  success: CheckCircle,
+  error: AlertOctagon,
+};
 
 export function Toast() {
   return (
