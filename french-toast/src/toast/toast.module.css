@@ -3,13 +3,14 @@
   display: flex;
   align-items: center;
   gap: 16px;
-  border-radius: 16px;
+  border-radius: 4px;
+  outline: 0.3px dashed black;
   color: black;
   color-scheme: light;
   background: white;
   max-width: 100%;
   width: 350px;
-  box-shadow: var(--shadow-elevation-medium);
+  box-shadow: var(--shadow-elevation-low);
 }
 
 .content {
