@@ -94,7 +94,7 @@ export function Playground(){
           <div
             className={`${styles.inputWrapper} ${styles.radioWrapper}`}
           >
-            <button onClick={handleCreateToast}>Pop toast</button>
+            <button className={styles.button} onClick={handleCreateToast}>Pop toast</button>
           </div>
         </div>
       </div>
