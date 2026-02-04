@@ -1,7 +1,7 @@
 import { useCallback, useContext, useEffect, useRef, useState, type ChangeEvent } from "react";
 import styles from "./playground.module.css"
 import { type Toast } from "../types/toast";
-import { ToastShelf } from "../stack";
+import { ToastShelf } from "../shelf";
 import { ToastContext } from "../toast-context";
 import { useEscapeKey } from "../hooks/useEscape";
 
