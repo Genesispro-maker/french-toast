@@ -1,23 +1,12 @@
-import {createContext, useState } from "react";
+import {useState, type ReactNode } from "react";
+import {type Toast } from "../types/toast";
+import { ToastContext } from "../toast-context";
 
-export const ToastContext = createContext()
 
-export function ToastProvider({children}){
-     const [toasts, setToasts] = useState([
-         {
-           message: "hello",
-           id: crypto.randomUUID(),
-           variant: "notice"
-         },
-   
-         {
-           message: "boring",
-           id: crypto.randomUUID(),
-           variant: "warning"
-         }
-       ])
+export function ToastProvider({children}: {children: ReactNode}){
+     const [toasts, setToasts] = useState<Array<Toast>>([])
 
-    function createToast(message: string, variant: string){
+    function createToast(message: string, variant: Toast['variant']){
           const nextToasts = [...toasts, {
             id: crypto.randomUUID(),
             message,
