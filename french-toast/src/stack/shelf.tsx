@@ -14,8 +14,8 @@ export function ToastShelf() {
   return (
     <ol className={styles.wrapper} role="region" aria-live="polite">
      {toasts.map((toast) => {
-      return <li key={toast.id} className={`${styles.toastWrapper} ${styles[toast.position]}`}>
-        <Toast position={toast.position} id={toast.id} variant={toast.variant}>{toast.message}</Toast>
+      return <li key={toast.id} className={`${styles.toastWrapper}`}>
+        <Toast id={toast.id} variant={toast.variant}>{toast.message ?? "hello world"}</Toast>
       </li>
      })}
     </ol>
