@@ -12,7 +12,7 @@ const ICONS_BY_VARIANT = {
   error: AlertOctagon,
 };
 
-export function Toast({id, variant, children}: {id: Toast["id"], variant: Toast["variant"], children: string, }) {
+export function Toast({id, variant, children, position}: {id: Toast["id"], variant: Toast["variant"], children: string, position: Toast["position"]}) {
 
   const Icon = ICONS_BY_VARIANT[variant]
 
@@ -26,7 +26,7 @@ export function Toast({id, variant, children}: {id: Toast["id"], variant: Toast[
     const {dismissToast} = context
 
   return (
-    <div className={`${styles.toast} ${styles[variant]}`}>
+    <div className={`${styles.toast} ${styles[variant]} ${styles[position]}`}>
 
       <div className={styles.iconContainer}>
 
@@ -44,7 +44,7 @@ export function Toast({id, variant, children}: {id: Toast["id"], variant: Toast[
         <XIcon size={24} />
 
       </button>
-      
+
     </div>
   );
 }
