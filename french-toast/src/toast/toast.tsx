@@ -24,17 +24,27 @@ export function Toast({id, variant, children}: {id: Toast["id"], variant: Toast[
     }
 
     const {dismissToast} = context
+
   return (
     <div className={`${styles.toast} ${styles[variant]}`}>
+
       <div className={styles.iconContainer}>
+
          <Icon size={24}/>
+
       </div>
+
       <p className={styles.content}>
+
         {children}
+
       </p>
       <button className={styles.closeButton} onClick={() => dismissToast(id)}>
+
         <XIcon size={24} />
+
       </button>
+      
     </div>
   );
 }
