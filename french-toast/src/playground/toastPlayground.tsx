@@ -1,18 +1,26 @@
 import { useCallback, useContext, useEffect, useState, type ChangeEvent } from "react";
 import styles from "./playground.module.css"
-
-import { ToastShelf } from "../shelf";
-import { ToastContext } from "./toast-provider";
+import { type Toast } from "../types/toast";
+import { ToastShelf } from "../stack";
+import { ToastContext } from "../toast-context";
 import { useEscapeKey } from "../hooks/useEscape";
 
 
-const VARIANT_OPTIONS = ['notice', 'warning', 'success', 'error'];
+const VARIANT_OPTIONS = ['notice', 'warning', 'success', 'error'] as const;
 
 export function Playground(){
-     const {createToast} = useContext(ToastContext)
-     const {setToasts} = useContext(ToastContext)
     const [message, setMessage] = useState<string>('')
-    const [variant, setVariant] = useState<string>(VARIANT_OPTIONS[0])
+    const [variant, setVariant] = useState<Toast["variant"]>(VARIANT_OPTIONS[0])
+
+
+    const context = useContext(ToastContext)
+
+    if(!context){
+      throw new Error("ToastContext must be within ToastProvider")
+    }
+
+    const {createToast} = context
+    const {setToasts} = context
    
 
     function handleCreateToast(e: ChangeEvent){
@@ -42,7 +50,7 @@ export function Playground(){
 
    const handleEsc = useCallback(() => {
      setToasts([])
-   }, [])
+   }, [setToasts])
 
     useEscapeKey("Escape", handleEsc)
 
@@ -80,7 +88,7 @@ export function Playground(){
                 name="variant"
                 value={options}
                 checked={options === variant}
-                onChange={(e) => setVariant(e.target.value)}
+                onChange={(e) => setVariant(e.target.value as Toast["variant"])}
                 className={styles[options]}
               />
                {options}
