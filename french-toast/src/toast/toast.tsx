@@ -12,7 +12,7 @@ const ICONS_BY_VARIANT = {
   error: AlertOctagon,
 };
 
-export function Toast({id, variant, children, position}: {id: Toast["id"], variant: Toast["variant"], children: string, position: Toast["position"]}) {
+export function Toast({id, variant, children}: {id: Toast["id"], variant: Toast["variant"], children: string}) {
 
   const Icon = ICONS_BY_VARIANT[variant]
 
@@ -26,7 +26,7 @@ export function Toast({id, variant, children, position}: {id: Toast["id"], varia
     const {dismissToast} = context
 
   return (
-    <div className={`${styles.toast} ${styles[variant]} ${styles[position]}`}>
+    <div className={`${styles.toast} ${styles[variant]}`}>
 
       <div className={styles.iconContainer}>
 
