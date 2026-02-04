@@ -1,27 +1,9 @@
-@keyframes bottom-right {
-  from {
-    transform: translateX(calc(100% + 64px));
-  }
-}
 
-@keyframes bottom-left{
-  from{
-    transform: translateX(calc(-100% + 64px));
-  }
-}
-
-@keyframes top-right{
+@keyframes slide-in{
   from{
     transform: translateX(calc(100% + 64px));
   }
 }
-
-@keyframes top-left{
-  from{
-    transform: translateX(calc(-100% + 64px));
-  }
-}
-
 
 .wrapper {
   position: fixed;
@@ -36,38 +18,5 @@
 
 .toastWrapper {
   will-change: transform;
-  position: fixed;
-  z-index: 9999;
-}
-
-.toastWrapper.top-right {
-  top: 20px;
-  right: 20px;
-  bottom: auto;
-  left: auto;
-  animation: top-right 800ms cubic-bezier(0, 0.46, 0, 1.04) both;
-}
-
-.toastWrapper.top-left {
-  top: 20px;
-  left: 20px;
-  bottom: auto;
-  right: auto;
-  animation: top-left 800ms cubic-bezier(0, 0.46, 0, 1.04) both;
-}
-
-.toastWrapper.bottom-right {
-  bottom: 20px;
-  right: 20px;
-  top: auto;
-  left: auto;
-  animation: bottom-right 800ms cubic-bezier(0, 0.46, 0, 1.04) both;
-}
-
-.toastWrapper.bottom-left {
-  bottom: 20px;
-  left: 20px;
-  top: auto;
-  right: auto;
-  animation: bottom-left 800ms cubic-bezier(0, 0.46, 0, 1.04) both;
+  animation: slide-in 800ms cubic-bezier(0, 0.46, 0, 1.04) both;
 }
