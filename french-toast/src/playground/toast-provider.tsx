@@ -6,12 +6,11 @@ import { ToastContext } from "../toast-context";
 export function ToastProvider({children}: {children: ReactNode}){
      const [toasts, setToasts] = useState<Array<Toast>>([])
 
-    function createToast(message: string, variant: Toast['variant'], position: Toast["position"]){
+    function createToast(message: string, variant: Toast['variant'],){
           const nextToasts = [...toasts, {
             id: crypto.randomUUID(),
             message,
             variant,
-            position,
       }]
 
       setToasts(nextToasts)
