@@ -7,13 +7,12 @@ import { useEscapeKey } from "../hooks/useEscape";
 
 
 const VARIANT_OPTIONS = ['notice', 'warning', 'success', 'error'] as const;
-const POSITION_OPTIONS = ["top-right", "top-left", "bottom-right" ,"bottom-left"] as const
+
 
 
 export function Playground(){
     const [message, setMessage] = useState<string>('')
     const [variant, setVariant] = useState<Toast["variant"]>(VARIANT_OPTIONS[0])
-    const [position, setPosition] = useState<Toast["position"]>(POSITION_OPTIONS[0])
 
     const textAreaRef = useRef<HTMLTextAreaElement | null>(null)
 
@@ -21,8 +20,8 @@ export function Playground(){
    const handleInput = () => {
     const textarea = textAreaRef.current;
     if (!textarea) return;
-    textarea.style.height = "auto"; // reset height
-    textarea.style.height = textarea.scrollHeight + "px"; // grow to fit content
+    textarea.style.height = "auto";
+    textarea.style.height = textarea.scrollHeight + "px";
   };
 
 
@@ -38,7 +37,7 @@ export function Playground(){
 
     function handleCreateToast(e: ChangeEvent){
       e.preventDefault()
-       createToast(message, variant, position)
+       createToast(message, variant)
        setMessage('')
        setVariant("notice")
     }
@@ -47,7 +46,7 @@ export function Playground(){
     useEffect(() => {
       function EnterKey(e: KeyboardEvent){
          if(e.key === "Enter"){
-            createToast(message, variant, position)
+            createToast(message, variant)
             setMessage('')
             setVariant("notice")
          }
@@ -58,7 +57,7 @@ export function Playground(){
       return () => {
         window.removeEventListener("keydown", EnterKey)
       }
-    }, [message, variant, createToast, position])
+    }, [message, variant, createToast])
 
    const handleEsc = useCallback(() => {
      setToasts([])
@@ -107,23 +106,6 @@ export function Playground(){
               </label>
             })}
           </div>
-        </div>
-       
-       <div className={styles.row}>
-
-        <div className={styles.label}>Position</div>
-
-     <div className={`${styles.PositionWrapper} ${styles.inputWrapper}`}>
-        {POSITION_OPTIONS.map((positions) => {
-           const id = `position-${positions}`;
-          return (
-            <label htmlFor="position">
-              <input id={id} type="radio" name="position" value={positions} checked={positions === position} onChange={(e) => setPosition(e.target.value as Toast["position"])}/>
-              {positions}
-            </label>
-          )
-        })}
-        </div>
         </div>
 
         <div className={styles.row}>
