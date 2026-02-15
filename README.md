@@ -71,6 +71,6 @@ Then open your browser and visit:
 
 http://localhost:5173
 
-🎯 Purpose of This Project
+# 🎯 Purpose of This Project
 
 This project was built purely for learning and experimentation — to better understand how toast notification systems work internally and how to structure a small React utility project from scratch.
