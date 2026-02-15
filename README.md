@@ -47,29 +47,26 @@ You can verify installation by running:
 # 🚀 Installation
 
 1️⃣ Clone the repository
-git clone https://github.com/Genesispro-maker/french-toast.git
+`git clone https://github.com/Genesispro-maker/french-toast.git`
 
 2️⃣ Navigate into the project
-cd french-toast
+`cd french-toast`
 
 3️⃣ Install dependencies
 
 # Using npm:
 
-npm install
+`npm install`
 
-Or using yarn:
-
-# yarn
 ▶️ Run the Project
 
 Start the development server:
 
-npm run dev
+`npm run dev`
 
 Then open your browser and visit:
 
-http://localhost:5173
+`http://localhost:5173`
 
 # 🎯 Purpose of This Project
 
